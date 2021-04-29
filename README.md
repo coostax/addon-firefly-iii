@@ -10,24 +10,15 @@
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
-[![GitLab CI][gitlabci-shield]][gitlabci]
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
 
-[![Discord][discord-shield]][discord]
-
-[![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
-
 Firefly-III - A free and open source personal finance manager
 
-## Deprecation warning
-
-**This add-on is in a deprecated state!**
-
-The Firefly III add-on is now deprecated and will no longer be supported,
-maintained and will not receive future updates or fixes.
-
 ## About
+
+Fork of [hassio-addons/addon-firefly-iii][hassio-firefly] project
+in hope of continuing to maintain this add-on.
 
 "Firefly III" is a self-hosted financial manager. It can help you keep track of
 expenses, income, budgets and everything in between. It supports credit cards,
@@ -39,21 +30,6 @@ Further information can be found at [Firefly-III].
 ![Firefly screenshot](images/screenshot.png)
 
 [:books: Read the full add-on documentation][docs]
-
-## Support
-
-Got questions?
-
-You have several options to get them answered:
-
-- The [Home Assistant Community Add-ons Discord chat server][discord] for add-on
-  support and feature requests.
-- The [Home Assistant Discord chat server][discord-ha] for general Home
-  Assistant discussions and questions.
-- The Home Assistant [Community Forum][forum].
-- Join the [Reddit subreddit][reddit] in [/r/homeassistant][reddit]
-
-You could also [open an issue here][issue] GitHub.
 
 ## Contributing
 
@@ -67,23 +43,17 @@ Thank you for being involved! :heart_eyes:
 
 ## Authors & contributors
 
-The original setup of this repository is by [Paul Sinclair][sinclairpaul].
+The original setup of this repository was done by [Paul Sinclair][sinclairpaul].
+The repository was later forked by [Paulo Costa][coostax] after the initial author made its repo read-only.
 
-For a full list of all authors and contributors,
+For a full list of past authors and contributors,
 check [the contributor's page][contributors].
-
-## We have got some Home Assistant add-ons for you
-
-Want some more functionality to your Home Assistant instance?
-
-We have created multiple add-ons for Home Assistant. For a full list, check out
-our [GitHub Repository][repository].
 
 ## License
 
 MIT License
 
-Copyright (c) 2019-2020 Paul Sinclair
+Copyright (c) 2020-2021 Paulo Costa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -107,29 +77,21 @@ SOFTWARE.
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
-[buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg
-[buymeacoffee]: https://www.buymeacoffee.com/sinclairpaul
-[commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/addon-firefly-iii.svg
-[commits]: https://github.com/hassio-addons/addon-firefly-iii/commits/master
-[contributors]: https://github.com/hassio-addons/addon-firefly-iii/graphs/contributors
-[discord-ha]: https://discord.gg/c5DvZ4e
-[discord-shield]: https://img.shields.io/discord/478094546522079232.svg
-[discord]: https://discord.me/hassioaddons
-[docs]: https://github.com/hassio-addons/addon-firefly-iii/blob/master/firefly-iii/DOCS.md
+[commits-shield]: https://img.shields.io/github/commit-activity/y/coostax/addon-firefly-iii.svg
+[commits]: https://github.com/coostax/addon-firefly-iii/commits/master
+[coostax]: https://github.com/coostax
+[contributors]: https://github.com/coostax/addon-firefly-iii/graphs/contributors
+[docs]: https://github.com/coostax/addon-firefly-iii/blob/master/firefly-iii/DOCS.md
 [Firefly-III]: https://firefly-iii.org/
-[forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
-[forum]: https://community.home-assistant.io/
-[gitlabci-shield]: https://gitlab.com/hassio-addons/addon-firefly-iii/badges/master/pipeline.svg
-[gitlabci]: https://gitlab.com/hassio-addons/addon-firefly-iii/pipelines
 [home-assistant]: https://home-assistant.io
+[hassio-firefly]: https://github.com/coostax/addon-firefly-iii
 [i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
-[issue]: https://github.com/hassio-addons/addon-firefly-iii/issues
+[issue]: https://github.com/coostax/addon-firefly-iii/issues
 [keepchangelog]: http://keepachangelog.com/en/1.0.0/
-[license-shield]: https://img.shields.io/github/license/hassio-addons/addon-firefly-iii.svg
+[license-shield]: https://img.shields.io/github/license/coostax/addon-firefly-iii.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
 [reddit]: https://reddit.com/r/homeassistant
-[releases-shield]: https://img.shields.io/github/release/hassio-addons/addon-firefly-iii.svg
-[releases]: https://github.com/hassio-addons/addon-firefly-iii/releases
-[repository]: https://github.com/hassio-addons/repository
+[releases-shield]: https://img.shields.io/github/release/coostax/addon-firefly-iii.svg
+[releases]: https://github.com/coostax/addon-firefly-iii/releases
 [sinclairpaul]: https://github.com/sinclairpaul

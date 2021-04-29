@@ -9,9 +9,10 @@ Further information can be found at [Firefly-III].
 
 ## Installation
 
-The installation of this add-on is pretty straightforward and not different in
-comparison to installing any other Home Assistant add-on.
+To install this add-on do the following steps:
 
+1. On supervisor -> add-on go to the options and select Repositories.
+1. Add the URL for this repo (https://github.com/coostax/addon-firefly-iii.git) to the add text box and click on ADD. 
 1. Search for the "Firefly-III" add-on in the add-on store and install it.
 1. Start the "Firefly-III" add-on.
 1. Check the logs of the "Firefly-III" add-on to see if everything went well.
@@ -165,13 +166,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 [Firefly-III]: https://firefly-iii.org/
-[contributors]: https://github.com/hassio-addons/addon-firefly-iii/graphs/contributors
+[contributors]: https://github.com/coostax/addon-firefly-iii/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
 [discord]: https://discord.me/hassioaddons
 [forum]: https://community.home-assistant.io/t/community-hass-io-xxxxx/xxxxx
 [sinclairpaul]: https://github.com/sinclairpaul
-[issue]: https://github.com/hassio-addons/addon-firefly-iii/issues
+[issue]: https://github.com/coostax/addon-firefly-iii/issues
 [keepchangelog]: http://keepachangelog.com/en/1.0.0/
 [reddit]: https://reddit.com/r/homeassistant
-[releases]: https://github.com/hassio-addons/addon-firefly-iii/releases
+[releases]: https://github.com/coostax/addon-firefly-iii/releases
 [semver]: http://semver.org/spec/v2.0.0.htm
