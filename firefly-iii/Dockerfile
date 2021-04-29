@@ -94,8 +94,8 @@ LABEL \
     org.opencontainers.image.authors="Paul Sinclair <hello@addons.community>" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.url="https://addons.community" \
-    org.opencontainers.image.source="https://github.com/hassio-addons/addon-firefly-iii" \
-    org.opencontainers.image.documentation="https://github.com/hassio-addons/addon-firefly-iii/blob/master/README.md" \
+    org.opencontainers.image.source="https://github.com/coostax/addon-firefly-iii" \
+    org.opencontainers.image.documentation="https://github.com/coostax/addon-firefly-iii/blob/master/README.md" \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version=${BUILD_VERSION}
