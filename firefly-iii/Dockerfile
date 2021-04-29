@@ -13,34 +13,35 @@ RUN \
     && apt-get install -y --no-install-recommends \
         git=1:2.20.1-2+deb10u3 \
         locales=2.28-10 \
-        mariadb-client=1:10.3.23-0+deb10u1 \
+        mariadb-client=1:10.3.25-0+deb10u1 \
         nginx=1.14.2-2+deb10u3 \
         software-properties-common=0.96.20.2-2 \
-        unzip=6.0-23+deb10u1 \
+        unzip=6.0-23+deb10u2 \
     #Requires PHP 7.4
     && curl -J -L -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list \
+    && PHP_PKG_VERSION=7.4.16-1+0~20210305.42+debian10~1.gbpbbe65e \
     && apt-get update \
     && apt-get install  -y --no-install-recommends \
         composer=1.8.4-1 \
-        php7.4-bcmath=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-curl=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-cli=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-common=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-fpm=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-gd=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-intl=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-ldap=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-mbstring=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-mysql=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-opcache=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-readline=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-sqlite3=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-xml=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4-zip=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
-        php7.4=7.4.11-6+0~20201018.31+debian10~1.gbpdc1a93 \
+        php7.4-bcmath=${PHP_PKG_VERSION} \
+        php7.4-curl=${PHP_PKG_VERSION} \
+        php7.4-cli=${PHP_PKG_VERSION} \
+        php7.4-common=${PHP_PKG_VERSION} \
+        php7.4-fpm=${PHP_PKG_VERSION} \
+        php7.4-gd=${PHP_PKG_VERSION} \
+        php7.4-intl=${PHP_PKG_VERSION} \
+        php7.4-ldap=${PHP_PKG_VERSION} \
+        php7.4-mbstring=${PHP_PKG_VERSION} \
+        php7.4-mysql=${PHP_PKG_VERSION} \
+        php7.4-opcache=${PHP_PKG_VERSION} \
+        php7.4-readline=${PHP_PKG_VERSION} \
+        php7.4-sqlite3=${PHP_PKG_VERSION} \
+        php7.4-xml=${PHP_PKG_VERSION} \
+        php7.4-zip=${PHP_PKG_VERSION} \
+        php7.4=${PHP_PKG_VERSION} \
     \
-    && FIREFLY_VERSION=5.4.5 \
+    && FIREFLY_VERSION=5.5.9 \
     \
     && curl -J -L -o /tmp/firefly.tar.gz \
         https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \
@@ -87,11 +88,11 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Paul Sinclair <hello@addons.community>" \
+    maintainer="Paulo Costa" \
     org.opencontainers.image.title="Firefly III" \
     org.opencontainers.image.description="A free and open source personal finance manager" \
     org.opencontainers.image.vendor="Home Assistant Community Add-ons" \
-    org.opencontainers.image.authors="Paul Sinclair <hello@addons.community>" \
+    org.opencontainers.image.authors="Paul Sinclair <hello@addons.community>, Paulo Costa" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.url="https://addons.community" \
     org.opencontainers.image.source="https://github.com/coostax/addon-firefly-iii" \
