@@ -20,28 +20,27 @@ RUN \
     #Requires PHP 7.4
     && curl -J -L -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list \
-    && PHP_PKG_VERSION=7.4.16-1+0~20210305.42+debian10~1.gbpbbe65e \
     && apt-get update \
     && apt-get install  -y --no-install-recommends \
         composer=1.8.4-1 \
-        php7.4-bcmath=${PHP_PKG_VERSION} \
-        php7.4-curl=${PHP_PKG_VERSION} \
-        php7.4-cli=${PHP_PKG_VERSION} \
-        php7.4-common=${PHP_PKG_VERSION} \
-        php7.4-fpm=${PHP_PKG_VERSION} \
-        php7.4-gd=${PHP_PKG_VERSION} \
-        php7.4-intl=${PHP_PKG_VERSION} \
-        php7.4-ldap=${PHP_PKG_VERSION} \
-        php7.4-mbstring=${PHP_PKG_VERSION} \
-        php7.4-mysql=${PHP_PKG_VERSION} \
-        php7.4-opcache=${PHP_PKG_VERSION} \
-        php7.4-readline=${PHP_PKG_VERSION} \
-        php7.4-sqlite3=${PHP_PKG_VERSION} \
-        php7.4-xml=${PHP_PKG_VERSION} \
-        php7.4-zip=${PHP_PKG_VERSION} \
-        php7.4=${PHP_PKG_VERSION} \
+        php7.4-bcmath \
+        php7.4-curl \
+        php7.4-cli \
+        php7.4-common \
+        php7.4-fpm \
+        php7.4-gd \
+        php7.4-intl \
+        php7.4-ldap \
+        php7.4-mbstring \
+        php7.4-mysql \
+        php7.4-opcache \
+        php7.4-readline \
+        php7.4-sqlite3 \
+        php7.4-xml \
+        php7.4-zip \
+        php7.4 \
     \
-    && FIREFLY_VERSION=5.5.9 \
+    && FIREFLY_VERSION=5.5.10 \
     \
     && curl -J -L -o /tmp/firefly.tar.gz \
         https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \
