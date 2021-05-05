@@ -40,7 +40,7 @@ RUN \
         php7.4-zip \
         php7.4 \
     \
-    && FIREFLY_VERSION=5.5.9 \
+    && FIREFLY_VERSION=5.5.10 \
     \
     && curl -J -L -o /tmp/firefly.tar.gz \
         https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \
