@@ -11,36 +11,36 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        git=1:2.20.1-2+deb10u3 \
-        locales=2.28-10 \
-        mariadb-client=1:10.3.25-0+deb10u1 \
-        nginx=1.14.2-2+deb10u3 \
-        software-properties-common=0.96.20.2-2 \
-        unzip=6.0-23+deb10u2 \
-    #Requires PHP 7.4
+        git \
+        locales \
+        mariadb-client \
+        nginx \
+        software-properties-common \
+        unzip \
+    #Requires PHP 8.0
     && curl -J -L -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install  -y --no-install-recommends \
-        composer=1.8.4-1 \
-        php7.4-bcmath \
-        php7.4-curl \
-        php7.4-cli \
-        php7.4-common \
-        php7.4-fpm \
-        php7.4-gd \
-        php7.4-intl \
-        php7.4-ldap \
-        php7.4-mbstring \
-        php7.4-mysql \
-        php7.4-opcache \
-        php7.4-readline \
-        php7.4-sqlite3 \
-        php7.4-xml \
-        php7.4-zip \
-        php7.4 \
+        composer \
+        php8.0-bcmath \
+        php8.0-curl \
+        php8.0-cli \
+        php8.0-common \
+        php8.0-fpm \
+        php8.0-gd \
+        php8.0-intl \
+        php8.0-ldap \
+        php8.0-mbstring \
+        php8.0-mysql \
+        php8.0-opcache \
+        php8.0-readline \
+        php8.0-sqlite3 \
+        php8.0-xml \
+        php8.0-zip \
+        php8.0 \
     \
-    && FIREFLY_VERSION=5.5.10 \
+    && FIREFLY_VERSION=5.6.1 \
     \
     && curl -J -L -o /tmp/firefly.tar.gz \
         https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \
