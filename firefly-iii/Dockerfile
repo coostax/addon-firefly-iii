@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/debian-base:5.0.0
+ARG BUILD_FROM=hassioaddons/debian-base:3.2.3
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,18 +11,18 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        git=1:2.20.1-2+deb10u3 \
-        locales=2.28-10 \
-        mariadb-client=1:10.3.25-0+deb10u1 \
-        nginx=1.14.2-2+deb10u3 \
-        software-properties-common=0.96.20.2-2 \
-        unzip=6.0-23+deb10u2 \
-    #Requires PHP 7.4
+        git \
+        locales \
+        mariadb-client \
+        nginx \
+        software-properties-common \
+        unzip \
+    #Requires PHP 8.0
     && curl -J -L -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install  -y --no-install-recommends \
-        composer=1.8.4-1 \
+        composer \
         php8.0-bcmath \
         php8.0-curl \
         php8.0-cli \
