@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file firefly-iii/Dockerfile --tag coostax/ha-addon-firefly-iii:$(date +%s)
+      run: docker build firefly-iii --file firefly-iii/Dockerfile --tag coostax/ha-addon-firefly-iii:$(date +%s)
