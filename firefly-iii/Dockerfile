@@ -40,7 +40,7 @@ RUN \
         php8.0-zip \
         php8.0 \
     \
-    && FIREFLY_VERSION=5.6.1 \
+    && FIREFLY_VERSION=5.6.6 \
     \
     && curl -J -L -o /tmp/firefly.tar.gz \
         https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \
