@@ -1,18 +1,23 @@
 name: Docker Image CI
 
 on:
-#  push:
-#    branches: [ master ]
   pull_request:
     branches: [ master ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      BASHIO_VERSION: 0.14.3
+      TEMPIO_VERSION: 2021.09.0
+      S6_OVERLAY_VERSION: 2.1.0.2
+      FIREFLY_VERSION: 5.6.6
     steps:
     - uses: actions/checkout@v2
+    - uses: chrisdickinson/setup-yq@latest
+    - name: set env vars with build.yaml
+      run: |
+        run: echo ::set-env name=BUILD_FROM::$(yq r firefly-iii/build.yaml build_from.amd64)
+        run: echo ::set-env name=FIREFLY_VERSION::$(yq r firefly-iii/build.yaml args.FIREFLY_VERSION)
     - name: Build the Docker image
-      run: docker build firefly-iii --file firefly-iii/Dockerfile --tag coostax/ha-addon-firefly-iii:$(date +%s)
+      run: docker build firefly-iii --file firefly-iii/Dockerfile --build-arg BUILD_FROM=$BUILD_FROM --build-arg FIREFLY_VERSION=$FIREFLY_VERSION --tag coostax/ha-addon-firefly-iii:$(date +%s)
