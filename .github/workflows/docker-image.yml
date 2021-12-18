@@ -17,7 +17,7 @@ jobs:
     - uses: chrisdickinson/setup-yq@latest
     - name: set env vars with build.yaml
       run: |
-        run: echo ::set-env name=BUILD_FROM::$(yq r firefly-iii/build.yaml build_from.amd64)
-        run: echo ::set-env name=FIREFLY_VERSION::$(yq r firefly-iii/build.yaml args.FIREFLY_VERSION)
+        echo ::set-env name=BUILD_FROM::$(yq r firefly-iii/build.yaml build_from.amd64)
+        echo ::set-env name=FIREFLY_VERSION::$(yq r firefly-iii/build.yaml args.FIREFLY_VERSION)
     - name: Build the Docker image
       run: docker build firefly-iii --file firefly-iii/Dockerfile --build-arg BUILD_FROM=$BUILD_FROM --build-arg FIREFLY_VERSION=$FIREFLY_VERSION --tag coostax/ha-addon-firefly-iii:$(date +%s)
