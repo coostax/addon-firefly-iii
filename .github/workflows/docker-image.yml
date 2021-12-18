@@ -7,17 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      BASHIO_VERSION: 0.14.3
-      TEMPIO_VERSION: 2021.09.0
-      S6_OVERLAY_VERSION: 2.1.0.2
-      FIREFLY_VERSION: 5.6.6
     steps:
     - uses: actions/checkout@v2
     - uses: chrisdickinson/setup-yq@latest
     - name: set env vars with build.yaml
       run: |
-        echo ::set-env name=BUILD_FROM::$(yq r firefly-iii/build.yaml build_from.amd64)
-        echo ::set-env name=FIREFLY_VERSION::$(yq r firefly-iii/build.yaml args.FIREFLY_VERSION)
+        echo "build_from=$(yq r firefly-iii/build.yaml build_from.amd64)" >> $GITHUB_ENV
+        echo "firefly_version=$(yq r firefly-iii/build.yaml args.FIREFLY_VERSION)" >> $GITHUB_ENV
+        echo "bashio_version=$(yq r firefly-iii/build.yaml args.BASHIO_VERSION)" >> $GITHUB_ENV
+        echo "tempio_version=$(yq r firefly-iii/build.yaml args.TEMPIO_VERSION)" >> $GITHUB_ENV
+        echo "s6_overlay_version=$(yq r firefly-iii/build.yaml args.S6_OVERLAY_VERSION)" >> $GITHUB_ENV
     - name: Build the Docker image
-      run: docker build firefly-iii --file firefly-iii/Dockerfile --build-arg BUILD_FROM=$BUILD_FROM --build-arg FIREFLY_VERSION=$FIREFLY_VERSION --tag coostax/ha-addon-firefly-iii:$(date +%s)
+      run: docker build firefly-iii --file firefly-iii/Dockerfile --build-arg BUILD_FROM=${{ env.build_from }} --build-arg FIREFLY_VERSION=${{ env.firefly_version }} --build-arg BASHIO_VERSION=${{ env.bashio_version }} --build-arg TEMPIO_VERSION=${{ env.tempio_version }} --build-arg S6_OVERLAY_VERSION=${{ env.s6_overlay_version }} --tag coostax/ha-addon-firefly-iii:$(date +%s)
