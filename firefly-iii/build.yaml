@@ -1,0 +1,23 @@
+build_from:
+  armv7: "ghcr.io/home-assistant/arm32v7-base-debian:buster"
+  armhf: "ghcr.io/home-assistant/armhf-base-debian:buster"
+  aarch64: "ghcr.io/home-assistant/aarch64-base-debian:buster"
+  amd64: "ghcr.io/home-assistant/amd64-base-debian:buster"
+  i386: "ghcr.io/home-assistant/i386-base-debian:buster"
+args:
+  BASHIO_VERSION: 0.14.3
+  TEMPIO_VERSION: 2021.09.0
+  S6_OVERLAY_VERSION: 2.1.0.2
+  FIREFLY_VERSION: 5.6.6
+labels:
+  io.hass.name: "Firefly III"
+  io.hass.description: "A free and open source personal finance manager"
+  io.hass.arch: "{arch}"
+  io.hass.type: "addon"
+  org.opencontainers.image.title: "Firefly III"
+  org.opencontainers.image.description: "A free and open source personal finance manager"
+  org.opencontainers.image.vendor: "Home Assistant Community Add-ons"
+  org.opencontainers.image.source: "https://github.com/coostax/addon-firefly-iii"
+  org.opencontainers.image.authors: "Paul Sinclair <hello@addons.community>, Paulo Costa"
+  org.opencontainers.image.licenses: "MIT"
+  org.opencontainers.image.documentation: "https://github.com/coostax/addon-firefly-iii/blob/master/README.md"
