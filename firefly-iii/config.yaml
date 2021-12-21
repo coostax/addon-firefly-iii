@@ -31,7 +31,7 @@ schema:
   remote_mysql_database: str?
   remote_mysql_username: str?
   remote_mysql_password: password?
-  remote_mysql_port": int?
+  remote_mysql_port: int?
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   certfile: str
   keyfile: str
