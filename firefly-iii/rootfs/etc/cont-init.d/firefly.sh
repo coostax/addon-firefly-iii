@@ -75,12 +75,12 @@ fi
 
 #Set app url
 if bashio::config.has_value 'app_url'; then
-  bashio::log.warning $(bashio::config "app_url")
-  export TRUSTED_PROXIES=$(bashio::config "app_url")
+  bashio::log.warning "$(bashio::config "app_url")"
+  export APP_URL=$(bashio::config "app_url")
 fi
 
 #Set trusted proxy
 if bashio::config.has_value 'trusted_proxy'; then
-  bashio::log.warning $(bashio::config "trusted_proxy")
-  export TRUSTED_PROXIES=$(bashio::config "trusted_proxy")
+  bashio::log.warning "$(bashio::config "trusted_proxy")"
+  export TRUSTED_PROXIES="$(bashio::config "trusted_proxy")"
 fi
