@@ -2,7 +2,7 @@ name: Firefly III
 version: 2.0.0
 slug: firefly-iii
 description: A free and open source personal finance manager
-url: "https://github.com/Raukze/addon-firefly-iii"
+url: "https://github.com/coostax/addon-firefly-iii"
 webui: "[PROTO:ssl]://[HOST]:[PORT:80]"
 services: 
   - mysql:want

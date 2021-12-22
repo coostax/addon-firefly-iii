@@ -1,5 +1,5 @@
 {
     "name": "Firefly-III homeassistant add-on",
-    "url": "https://github.com/Raukze/addon-firefly-iii",
-    "maintainer": "Raukze"
+    "url": "https://github.com/coostax/addon-firefly-iii",
+    "maintainer": "Paulo Costa <coostax@gmail.com>"
 }

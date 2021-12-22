@@ -74,6 +74,7 @@ else
 fi
 
 #Create .env file
+bashio::log.info "Creating environment variable file for Firefly-iii"
 rm -f /var/www/firefly/.env
 
 #Set app url
