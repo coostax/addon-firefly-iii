@@ -9,7 +9,6 @@ declare key
 declare password
 declare port
 declare username
-declare trusted_proxies
 
 if ! bashio::fs.directory_exists "/data/firefly/upload"; then
     bashio::log "Creating upload directory"
@@ -74,13 +73,14 @@ else
     -e "CREATE DATABASE IF NOT EXISTS \`firefly\` ;"
 fi
 
-#Write configuration variables to .env file
-if bashio::config.has_value 'trusted_proxies'; then
-  bashio::log.warning $(bashio::config "trusted_proxies[${trusted_proxy}]")
-  for trusted_proxy in $(bashio::config 'trusted_proxies'); do
+#Set app url
+if bashio::config.has_value 'app_url'; then
+  bashio::log.warning $(bashio::config "app_url")
+  export TRUSTED_PROXIES=$(bashio::config "app_url")
+fi
 
-    trusted_proxy=$(bashio::config "trusted_proxies[${trusted_proxy}]")
-    bashio::log.warning $trusted_proxy
-
-  done
+#Set trusted proxy
+if bashio::config.has_value 'trusted_proxy'; then
+  bashio::log.warning $(bashio::config "trusted_proxy")
+  export TRUSTED_PROXIES=$(bashio::config "trusted_proxy")
 fi
