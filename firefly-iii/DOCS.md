@@ -93,6 +93,10 @@ server is listening on.
 
 Your Mapbox API key for showing a map on the page of a tag.
 
+### Option: `trusted_proxies`
+
+Only applies when using a reverse proxy. Set it to ** and reverse proxies work just fine. Accepts a list of values.
+
 ## Database usage
 
 By default, Firefly-III will automatically use and configure the Home Assistant
