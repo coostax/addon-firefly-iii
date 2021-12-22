@@ -76,12 +76,12 @@ fi
 #Set app url
 if bashio::config.has_value 'app_url'; then
   bashio::log.warning "$(bashio::config "app_url")"
-  "APP_URL=""$(bashio::config "app_url")" > /var/www/firefly/.env
+  echo "APP_URL=""$(bashio::config "app_url")" > /var/www/firefly/.env
 fi
 
 #Set trusted proxy
 if bashio::config.has_value 'trusted_proxy'; then
   bashio::log.warning "$(bashio::config "trusted_proxy")"
-  "TRUSTED_PROXIES=""$(bashio::config "trusted_proxy")" > /var/www/firefly/.env
+  echo "TRUSTED_PROXIES=""$(bashio::config "trusted_proxy")" > /var/www/firefly/.env
 fi
 bashio::log.warning cat /var/www/firefly/.env
