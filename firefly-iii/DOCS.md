@@ -93,6 +93,14 @@ server is listening on.
 
 Your Mapbox API key for showing a map on the page of a tag.
 
+### Option: `app_url`
+
+Set APP_URL to the URL Firefly III will be on. For example `https://firefly.example.com`.
+
+### Option: `trusted_proxy`
+
+Only applies when using a reverse proxy. Set it to `**` and reverse proxies work just fine.
+
 ## Database usage
 
 By default, Firefly-III will automatically use and configure the Home Assistant
