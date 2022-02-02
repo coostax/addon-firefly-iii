@@ -8,7 +8,7 @@ args:
   BASHIO_VERSION: 0.14.3
   TEMPIO_VERSION: 2021.09.0
   S6_OVERLAY_VERSION: 2.1.0.2
-  FIREFLY_VERSION: 5.6.6
+  FIREFLY_VERSION: 5.6.13
 labels:
   io.hass.name: "Firefly III"
   io.hass.description: "A free and open source personal finance manager"

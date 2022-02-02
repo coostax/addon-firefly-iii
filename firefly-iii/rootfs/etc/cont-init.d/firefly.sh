@@ -72,3 +72,15 @@ else
     -h "${host}" -P "${port}" \
     -e "CREATE DATABASE IF NOT EXISTS \`firefly\` ;"
 fi
+
+#Create .env file
+bashio::log.info "Creating environment variable file for Firefly-iii"
+rm -f /var/www/firefly/.env
+
+if bashio::config.has_value 'app_url'; then
+  echo "APP_URL=""$(bashio::config "app_url")" > /var/www/firefly/.env
+fi
+
+if bashio::config.has_value 'trusted_proxy'; then
+  echo "TRUSTED_PROXIES=""$(bashio::config "trusted_proxy")" > /var/www/firefly/.env
+fi
