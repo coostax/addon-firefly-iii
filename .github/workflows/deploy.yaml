@@ -1,0 +1,22 @@
+---
+name: Deploy
+
+# yamllint disable-line rule:truthy
+on:
+  release:
+    types:
+      - published
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  workflows:
+    uses: coostax/ghactions-workflows/.github/workflows/ha-addon-deploy.yaml@main
+    with:
+      ghcr_repo: "coostax"
+    secrets:
+      CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
+      DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}

@@ -1,22 +1,19 @@
+---
 name: Firefly III
-version: 2.0.2
+version: dev
 slug: firefly-iii
 description: A free and open source personal finance manager
 url: "https://github.com/coostax/addon-firefly-iii"
 webui: "[PROTO:ssl]://[HOST]:[PORT:80]"
-services: 
+services:
   - mysql:want
-startup: "application"
 arch:
-  - armhf
   - armv7
   - aarch64
   - amd64
   - i386
-boot: "auto"
 hassio_api: true
-hassio_role: default
-map: 
+map:
   - ssl
 ports:
   80/tcp: 3473
@@ -40,4 +37,3 @@ schema:
   app_url: str?
   trusted_proxy: str?
 init: false
-#image: "ghcr.io/coostax/{arch}-addon-firefly-iii"
