@@ -12,7 +12,8 @@ Further information can be found at [Firefly-III].
 To install this add-on do the following steps:
 
 1. On supervisor -> add-on go to the options and select Repositories.
-1. Add the URL for this repo (https://github.com/coostax/addon-firefly-iii.git) to the add text box and click on ADD. 
+1. Add the URL for my addons repo (<https://github.com/coostax/ha-addons.git>)
+   to the add text box and click on ADD.
 1. Search for the "Firefly-III" add-on in the add-on store and install it.
 1. Start the "Firefly-III" add-on.
 1. Check the logs of the "Firefly-III" add-on to see if everything went well.

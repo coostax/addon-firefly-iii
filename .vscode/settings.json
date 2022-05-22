@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/sourcehut-build-0.65.0.json": "file:///home/paulo/Workspace/homeassistant/addon-firefly-iii/firefly-iii/build.yaml"
+    }
+}

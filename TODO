@@ -1,0 +1,1 @@
+replace armv7 image to - "ghcr.io/home-assistant/armv7-base-debian:buster"
