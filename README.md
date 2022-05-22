@@ -82,7 +82,7 @@ SOFTWARE.
 [coostax]: https://github.com/coostax
 [contributors]: https://github.com/coostax/addon-firefly-iii/graphs/contributors
 [docs]: https://github.com/coostax/addon-firefly-iii/blob/master/firefly-iii/DOCS.md
-[Firefly-III]: https://firefly-iii.org/
+[firefly-iii]: https://firefly-iii.org/
 [home-assistant]: https://home-assistant.io
 [hassio-firefly]: https://github.com/coostax/addon-firefly-iii
 [i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
