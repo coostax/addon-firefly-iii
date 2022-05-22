@@ -79,10 +79,10 @@ SOFTWARE.
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
 [commits-shield]: https://img.shields.io/github/commit-activity/y/coostax/addon-firefly-iii.svg
-[commits]: https://github.com/coostax/addon-firefly-iii/commits/master
+[commits]: https://github.com/coostax/addon-firefly-iii/commits/main
 [coostax]: https://github.com/coostax
 [contributors]: https://github.com/coostax/addon-firefly-iii/graphs/contributors
-[docs]: https://github.com/coostax/addon-firefly-iii/blob/master/firefly-iii/DOCS.md
+[docs]: https://github.com/coostax/addon-firefly-iii/blob/main/firefly-iii/DOCS.md
 [firefly-iii]: https://firefly-iii.org/
 [home-assistant]: https://home-assistant.io
 [hassio-firefly]: https://github.com/coostax/addon-firefly-iii
