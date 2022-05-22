@@ -43,7 +43,7 @@ dealing with an unknown issue. Possible values are:
 - `debug`: Shows detailed debug information.
 - `info`: Normal (usually) interesting events.
 - `warning`: Exceptional occurrences that are not errors.
-- `error`:  Runtime errors that do not require immediate action.
+- `error`: Runtime errors that do not require immediate action.
 - `fatal`: Something went terribly wrong. Add-on becomes unusable.
 
 Please note that each level automatically includes log messages from a
@@ -121,12 +121,12 @@ functionality. The format of the log is based on
 [Keep a Changelog][keepchangelog].
 
 Releases are based on [Semantic Versioning][semver], and use the format
-of ``MAJOR.MINOR.PATCH``. In a nutshell, the version will be incremented
+of `MAJOR.MINOR.PATCH`. In a nutshell, the version will be incremented
 based on the following:
 
-- ``MAJOR``: Incompatible or major changes.
-- ``MINOR``: Backwards-compatible new features and enhancements.
-- ``PATCH``: Backwards-compatible bugfixes and package updates.
+- `MAJOR`: Incompatible or major changes.
+- `MINOR`: Backwards-compatible new features and enhancements.
+- `PATCH`: Backwards-compatible bugfixes and package updates.
 
 ## Support
 
@@ -174,7 +174,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Firefly-III]: https://firefly-iii.org/
+[firefly-iii]: https://firefly-iii.org/
 [contributors]: https://github.com/coostax/addon-firefly-iii/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
 [discord]: https://discord.me/hassioaddons
