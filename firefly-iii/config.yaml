@@ -1,6 +1,6 @@
 ---
 name: Firefly III
-version: 2.0.2
+version: dev
 slug: firefly-iii
 description: A free and open source personal finance manager
 url: "https://github.com/coostax/addon-firefly-iii"
