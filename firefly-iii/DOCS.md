@@ -100,7 +100,8 @@ Set APP_URL to the URL Firefly III will be on. For example `https://firefly.exam
 
 ### Option: `trusted_proxy`
 
-Only applies when using a reverse proxy. Set it to `**` and reverse proxies work just fine.
+Only applies when using a reverse proxy. Set it to `**` and
+reverse proxies work just fine.
 
 ## Database usage
 
