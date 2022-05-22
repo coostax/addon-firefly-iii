@@ -45,7 +45,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/firefly
-# hadolint ignore=SC3009
+# hadolint ignore=SC3009,SC2039
 RUN \
     curl -J -L -o /tmp/firefly.tar.gz \
         https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \

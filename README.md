@@ -44,7 +44,8 @@ Thank you for being involved! :heart_eyes:
 ## Authors & contributors
 
 The original setup of this repository was done by [Paul Sinclair][sinclairpaul].
-The repository was later forked by [Paulo Costa][coostax] after the initial author made its repo read-only.
+The repository was later forked by [Paulo Costa][coostax] after the initial
+author made its repo read-only.
 
 For a full list of past authors and contributors,
 check [the contributor's page][contributors].
