@@ -23,6 +23,8 @@ options:
   ssl: false
   certfile: fullchain.pem
   keyfile: privkey.pem
+panel_icon: mdi:chart-areaspline-variant
+panel_title: Firefly III
 schema:
   remote_mysql_host: str?
   remote_mysql_database: str?
