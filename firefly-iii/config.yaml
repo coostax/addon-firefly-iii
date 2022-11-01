@@ -5,6 +5,7 @@ slug: firefly-iii
 description: A free and open source personal finance manager
 url: "https://github.com/coostax/addon-firefly-iii"
 webui: "[PROTO:ssl]://[HOST]:[PORT:80]"
+ingress: true
 services:
   - mysql:want
 arch:
