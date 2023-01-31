@@ -96,4 +96,5 @@ SOFTWARE.
 [releases-shield]: https://img.shields.io/github/release/coostax/addon-firefly-iii.svg
 [releases]: https://github.com/coostax/addon-firefly-iii/releases
 [sinclairpaul]: https://github.com/sinclairpaul
+
 .
