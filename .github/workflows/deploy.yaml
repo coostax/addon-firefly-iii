@@ -12,6 +12,9 @@ on:
     types:
       - completed
 
+permissions:
+  packages: write
+
 jobs:
   workflows:
     uses: coostax/ghactions-workflows/.github/workflows/ha-addon-deploy.yaml@main
