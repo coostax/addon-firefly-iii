@@ -18,6 +18,8 @@ fi
 
 rm -r /var/www/firefly/storage/upload
 ln -s /data/firefly/upload /var/www/firefly/storage/upload
+chown -R www-data:www-data /var/www/firefly/storage
+chmod -R 755 /var/www/firefly/storage
 
 #Create API key if needed
 if ! bashio::fs.file_exists "/data/firefly/appkey.txt"; then
