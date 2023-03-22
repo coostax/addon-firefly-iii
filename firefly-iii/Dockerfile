@@ -57,6 +57,9 @@ RUN \
     \
     && rm -f /tmp/composer \
     && find /var/www/firefly -type f -name "*.md" -depth -exec rm -f {} \; \
+    && chown -R www-data:www-data /var/www/firefly/storage \
+    && chmod g+s /var/www/firefly/storage \
+    && chmod 0644 /var/www/firefly/storage && chmod -R 0755 /var/www/firefly/storage/* \
     && apt-get purge -y --auto-remove \
         git \
         software-properties-common \
