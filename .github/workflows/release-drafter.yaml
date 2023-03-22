@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  
+
 jobs:
   workflows:
     uses: coostax/ghactions-workflows/.github/workflows/release-drafter.yaml@main
