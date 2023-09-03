@@ -13,6 +13,6 @@ on:
 
 jobs:
   workflows:
-    uses: coostax/ghactions-workflows/.github/workflows/ha-addon-ci.yaml@main
+    uses: coostax/ghactions-workflows/.github/workflows/ha-addon-ci.yaml@main 
     with:
       ghcr_repo: "coostax"
