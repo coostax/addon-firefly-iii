@@ -3,7 +3,7 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Default ENV
-ENV FIREFLY_VERSION=5.7.18
+ENV FIREFLY_VERSION=6.0.0
 
 # Setup base
 # hadolint ignore=DL3008,DL4006
@@ -48,7 +48,7 @@ WORKDIR /var/www/firefly
 # hadolint ignore=SC3009,SC2039
 RUN \
     curl -J -L -o /tmp/firefly.tar.gz \
-        https://github.com/firefly-iii/firefly-iii/archive/${FIREFLY_VERSION}.tar.gz \
+        https://github.com/firefly-iii/firefly-iii/archive/refs/tags/v${FIREFLY_VERSION}.tar.gz \
     && tar zxf /tmp/firefly.tar.gz -C \
         /var/www/firefly --strip-components=1 \
     && printf "vi_VN.UTF-8 UTF-8\nfi_FI.UTF-8 UTF-8\nsv_SE.UTF-8 UTF-8\nel_GR.UTF-8 UTF-8\nhu_HU.UTF-8 UTF-8\nro_RO.UTF-8 UTF-8\nnb_NO.UTF-8 UTF-8\nde_DE.UTF-8 UTF-8\ncs_CZ.UTF-8 UTF-8\nen_US.UTF-8 UTF-8\nes_ES.UTF-8 UTF-8\nfr_FR.UTF-8 UTF-8\nid_ID.UTF-8 UTF-8\nit_IT.UTF-8 UTF-8\nnl_NL.UTF-8 UTF-8\npl_PL.UTF-8 UTF-8\npt_PT.UTF-8 UTF-8\nru_RU.UTF-8 UTF-8\ntr_TR.UTF-8 UTF-8\nzh_TW.UTF-8 UTF-8\nzh_CN.UTF-8 UTF-8\n\n" > /etc/locale.gen \
