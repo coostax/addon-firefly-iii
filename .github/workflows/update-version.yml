@@ -18,7 +18,8 @@ jobs:
       - name: Check for new version and update Dockerfile
         id: check_version
         run: |
-          echo "{new_version}="{$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)}" >> $GITHUB_OUTPUT
+          n_vers=$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)
+          echo "{new_version}={$n_vers}" >> $GITHUB_OUTPUT
 
       - name: Update Dockerfile
         run: |
