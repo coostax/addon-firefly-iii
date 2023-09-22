@@ -1,5 +1,5 @@
 ---
-name: Update Firefly Version
+name: Check Firefly Version
 
 # yamllint disable-line rule:truthy
 on:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update:
+  check_updates:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,17 +26,16 @@ jobs:
           sed -i "s/ENV FIREFLY_VERSION=.*/ENV FIREFLY_VERSION=${{ steps.check_version.outputs.new_version }}/" firefly-iii/Dockerfile
 
       - name: Check if Dockerfile has changed
-        id: check_file
-        run: |
-          if git diff --exit-code firefly-iii/Dockerfile > /dev/null; then
-            echo "{file_has_changed}={false}" >> $GITHUB_OUTPUT
-            echo "no new version, nothing to do..."
-          else
-            echo "name={file_has_changed}={true}" >> $GITHUB_OUTPUT
-          fi
+        uses: tj-actions/verify-changed-files@v16
+        id: verify_changed_files
+        with:
+          files: |
+            firefly-iii/Dockerfile
+
       - name: Create PR
-        if: steps.check_file.outputs.file_has_changed == 'true'
+        if: steps.verify_changed_files.outputs.files_changed == 'true'
         run: |
-          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_x-x-x
+          echo "creating PR....";
+          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_${{ steps.check_version.outputs.new_version }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
