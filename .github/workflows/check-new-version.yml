@@ -3,7 +3,6 @@ name: Check Firefly Version
 
 # yamllint disable-line rule:truthy
 on:
-  push:
   schedule:
     - cron: '0 0 * * *'  # Run daily at 00:00
   workflow_dispatch:
