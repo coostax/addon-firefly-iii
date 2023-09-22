@@ -1,5 +1,5 @@
 ---
-name: Check for new version and update Dockerfile
+name: check new version
 
 # yamllint disable-line rule:truthy
 on:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Check for new version and update Dockerfile
         id: check_version
