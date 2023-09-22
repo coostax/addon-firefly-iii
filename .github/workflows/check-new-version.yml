@@ -3,6 +3,7 @@ name: Check Firefly Version
 
 # yamllint disable-line rule:truthy
 on:
+  push:
   schedule:
     - cron: '0 0 * * *'  # Run daily at 00:00
   workflow_dispatch:
@@ -35,7 +36,10 @@ jobs:
       - name: Create PR
         if: steps.verify_changed_files.outputs.files_changed == 'true'
         run: |
-          echo "creating PR....";
-          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_${{ steps.check_version.outputs.new_version }}
+          branch_name = "new_ff_version_${{ steps.check_version.outputs.new_version }}"
+          git checkout -b $branch_name
+          git commit -a -m "update firefly to ${{ steps.check_version.outputs.new_version }}"
+          git push --force origin $branch_name
+          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head $branch_name
         env:
           GH_TOKEN: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
