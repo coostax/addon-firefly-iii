@@ -18,7 +18,8 @@ jobs:
         id: check_version
         run: |
           n_vers=$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)
-          echo "{new_version}={$n_vers}" >> $GITHUB_OUTPUT
+          echo "new_version=$n_vers" >> $GITHUB_OUTPUT
+          echo "version is $n_vers"
 
       - name: Update Dockerfile
         run: |
@@ -34,8 +35,13 @@ jobs:
 
       - name: Create PR
         if: steps.verify_changed_files.outputs.files_changed == 'true'
-        run: |
-          echo "creating PR....";
-          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_${{ steps.check_version.outputs.new_version }}
-        env:
-          GH_TOKEN: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
+          commit-message: "update firefly to version ${{ steps.check_version.outputs.new_version }}"
+          branch: "new_ff_version_${{ steps.check_version.outputs.new_version }}"
+          delete-branch: true
+          base: "main"
+          title: "Update Firefly-iii version"
+          body: "Update Firefly-iii to version ${{ steps.check_version.outputs.new_version }}"
+          labels: "enhancement"
