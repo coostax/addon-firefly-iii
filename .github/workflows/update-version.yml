@@ -1,11 +1,10 @@
 ---
-name: check new version
+name: Update Firefly Version
 
 # yamllint disable-line rule:truthy
 on:
   schedule:
     - cron: '0 0 * * *'  # Run daily at 00:00
-  pull_request:
   workflow_dispatch:
 
 jobs:
