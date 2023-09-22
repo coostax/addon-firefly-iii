@@ -38,4 +38,4 @@ jobs:
           echo "creating PR....";
           gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_${{ steps.check_version.outputs.new_version }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
