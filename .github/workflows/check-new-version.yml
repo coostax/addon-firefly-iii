@@ -36,13 +36,13 @@ jobs:
 
       - name: Create PR
         if: steps.verify_changed_files.outputs.files_changed == 'true'
-        run: |
-          branch_name="new_ff_version_${{ steps.check_version.outputs.new_version }}"
-          git config user.name 'Checkversion bot'
-          git config user.email 'checkversion-bot@users.noreply.github.com'
-          git checkout -b $branch_name
-          git commit -a -m "update firefly to ${{ steps.check_version.outputs.new_version }}"
-          git push --force origin $branch_name
-          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head $branch_name
-        env:
-          GH_TOKEN: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
+          commit-message: "update firefly to version ${{ steps.check_version.outputs.new_version }}"
+          branch: "new_ff_version_${{ steps.check_version.outputs.new_version }}"
+          delete-branch: true
+          base: "main"
+          title: "Update Firefly-iii version"
+          body: "Update Firefly-iii to version ${{ steps.check_version.outputs.new_version }}"
+          labels: "enhancement"
