@@ -1,4 +1,7 @@
+---
 name: Check for new version and update Dockerfile
+
+# yamllint disable-line rule:truthy
 on:
   schedule:
     - cron: '0 0 * * *'  # Run daily at 00:00
@@ -20,10 +23,10 @@ jobs:
         run: |
           grep "ENV FIREFLY_VERSION=" firefly-iii/Dockerfile | cut -d= -f2
           sed -i "s/ENV FIREFLY_VERSION=.*/ENV FIREFLY_VERSION=${{ steps.check_version.outputs.new_version }}/" firefly-iii/Dockerfile
-      
+
       - name: Check if Dockerfile has changed
         id: check_file
-        run: | 
+        run: |
           if $(git diff --exit-code firefly-iii/Dockerfile); then
             echo "::set-output name=file_has_changed::true"
           else
