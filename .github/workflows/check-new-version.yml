@@ -1,15 +1,14 @@
 ---
-name: Check Firefly new version
+name: Check Firefly Version
 
 # yamllint disable-line rule:truthy
 on:
-  pull_request:
   schedule:
     - cron: '0 0 * * *'  # Run daily at 00:00
   workflow_dispatch:
 
 jobs:
-  update:
+  check_updates:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,7 +35,7 @@ jobs:
       - name: Create PR
         if: steps.verify_changed_files.outputs.files_changed == 'true'
         run: |
-          echo "creating PR...."
-#          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_x-x-x
+          echo "creating PR....";
+          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_${{ steps.check_version.outputs.new_version }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
