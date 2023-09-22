@@ -18,7 +18,9 @@ jobs:
       - name: Check for new version and update Dockerfile
         id: check_version
         run: |
-          echo "{new_version}={$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)}" >> $GITHUB_OUTPUT
+          n_vers=$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)
+          echo "new_version=$n_vers" >> $GITHUB_OUTPUT
+          echo "version is $n_vers"
 
       - name: Update Dockerfile
         run: |
@@ -36,6 +38,8 @@ jobs:
         if: steps.verify_changed_files.outputs.files_changed == 'true'
         run: |
           branch_name="new_ff_version_${{ steps.check_version.outputs.new_version }}"
+          git config user.name 'Checkversion bot'
+          git config user.email 'checkversion-bot@users.noreply.github.com'
           git checkout -b $branch_name
           git commit -a -m "update firefly to ${{ steps.check_version.outputs.new_version }}"
           git push --force origin $branch_name
