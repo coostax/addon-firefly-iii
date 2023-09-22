@@ -18,7 +18,7 @@ jobs:
       - name: Check for new version and update Dockerfile
         id: check_version
         run: |
-          echo "::set-output name=new_version::$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)"
+          echo "{new_version}="{$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)}" >> $GITHUB_OUTPUT
 
       - name: Update Dockerfile
         run: |
@@ -28,11 +28,11 @@ jobs:
       - name: Check if Dockerfile has changed
         id: check_file
         run: |
-          if $(git diff --exit-code firefly-iii/Dockerfile); then
-            echo "::set-output name=file_has_changed::true"
-          else
-            echo "::set-output name=file_has_changed::false"
+          if git diff --exit-code firefly-iii/Dockerfile > /dev/null; then
+            echo "{file_has_changed}={false}" >> $GITHUB_OUTPUT
             echo "no new version, nothing to do..."
+          else
+            echo "name={file_has_changed}={true}" >> $GITHUB_OUTPUT
           fi
       - name: Create PR
         if: steps.check_file.outputs.file_has_changed == 'true'
