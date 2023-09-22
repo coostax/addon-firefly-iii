@@ -18,8 +18,7 @@ jobs:
       - name: Check for new version and update Dockerfile
         id: check_version
         run: |
-          n_vers=$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)
-          echo "{new_version}={$n_vers}" >> $GITHUB_OUTPUT
+          echo "{new_version}={$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)}" >> $GITHUB_OUTPUT
 
       - name: Update Dockerfile
         run: |
@@ -36,7 +35,7 @@ jobs:
       - name: Create PR
         if: steps.verify_changed_files.outputs.files_changed == 'true'
         run: |
-          branch_name = "new_ff_version_${{ steps.check_version.outputs.new_version }}"
+          branch_name="new_ff_version_${{ steps.check_version.outputs.new_version }}"
           git checkout -b $branch_name
           git commit -a -m "update firefly to ${{ steps.check_version.outputs.new_version }}"
           git push --force origin $branch_name
