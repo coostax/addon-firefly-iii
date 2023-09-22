@@ -1,0 +1,38 @@
+name: Check for new version and update Dockerfile
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at 00:00
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for new version and update Dockerfile
+        id: check_version
+        run: |
+          echo "::set-output name=new_version::$(curl --silent "https://api.github.com/repos/firefly-iii/firefly-iii/releases/latest" | jq -r .tag_name)"
+
+      - name: Update Dockerfile
+        run: |
+          grep "ENV FIREFLY_VERSION=" firefly-iii/Dockerfile | cut -d= -f2
+          sed -i "s/ENV FIREFLY_VERSION=.*/ENV FIREFLY_VERSION=${{ steps.check_version.outputs.new_version }}/" firefly-iii/Dockerfile
+      
+      - name: Check if Dockerfile has changed
+        id: check_file
+        run: | 
+          if $(git diff --exit-code firefly-iii/Dockerfile); then
+            echo "::set-output name=file_has_changed::true"
+          else
+            echo "::set-output name=file_has_changed::false"
+            echo "no new version, nothing to do..."
+          fi
+      - name: Create PR
+        if: steps.check_file.outputs.file_has_changed == 'true'
+        run: |
+          gh pr create --title "Update Firefly-iii version" --body "Update to version ${{ steps.check_version.outputs.new_version }}" --base main --head new_ff_version_x-x-x
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
