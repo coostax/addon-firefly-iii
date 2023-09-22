@@ -31,7 +31,7 @@ jobs:
         id: verify_changed_files
         with:
           files: |
-            Dockerfile
+            firefly-iii/Dockerfile
 
       - name: Create PR
         if: steps.verify_changed_files.outputs.files_changed == 'true'
