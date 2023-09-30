@@ -37,7 +37,7 @@ jobs:
         if: steps.verify_changed_files.outputs.files_changed == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.ELEVATED_ACCESS_TOKEN }}
+          token: ${{ secrets.DISPATCH_TOKEN }}
           commit-message: "update firefly to version ${{ steps.check_version.outputs.new_version }}"
           branch: "new_ff_version_${{ steps.check_version.outputs.new_version }}"
           delete-branch: true
