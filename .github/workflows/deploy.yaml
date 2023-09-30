@@ -23,3 +23,10 @@ jobs:
     secrets:
       CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+
+  publish:
+    uses: coostax/ghactions-workflows/.github/workflows/ha-addon-publish.yaml@main
+    with:
+      add_on: "firefly-iii"
+    secrets:
+      DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
