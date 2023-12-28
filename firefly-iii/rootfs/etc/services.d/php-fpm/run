@@ -44,6 +44,7 @@ fi
 bashio::log.info "Installing/updating Database"
 php /var/www/firefly/artisan firefly-iii:create-database > /dev/null 2>&1
 php /var/www/firefly/artisan migrate --seed --no-interaction --force > /dev/null 2>&1
+php /var/www/firefly/artisan firefly-iii:upgrade-database > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:decrypt-all > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:transaction-identifiers > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:migrate-to-groups > /dev/null 2>&1
@@ -58,6 +59,7 @@ php /var/www/firefly/artisan firefly-iii:cc-liabilities > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:back-to-journals > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:rename-account-meta > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:migrate-recurrence-meta > /dev/null 2>&1
+php /var/www/firefly/artisan firefly-iii:create-group-memberships > /dev/null 2>&1
 
 php /var/www/firefly/artisan firefly-iii:fix-piggies > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:create-link-types > /dev/null 2>&1
@@ -75,13 +77,16 @@ php /var/www/firefly/artisan firefly-iii:rename-meta-fields > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:fix-ob-currencies > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:fix-long-descriptions > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:fix-recurring-transactions > /dev/null 2>&1
+php /var/www/firefly/artisan firefly-iii:upgrade-group-information > /dev/null 2>&1
 
 php /var/www/firefly/artisan firefly-iii:report-empty-objects > /dev/null 2>&1
 php /var/www/firefly/artisan firefly-iii:report-sum > /dev/null 2>&1
 
+php /var/www/firefly/artisan firefly-iii:verify-security-alerts
+
 php /var/www/firefly/artisan passport:install > /dev/null 2>&1
 
-php /var/www/firefly/artisan firefly-iii:set-latest-version --james-is-cool > /dev/null 2>&1
+php /var/www/firefly/artisan firefly-iii:set-latest-version > /dev/null 2>&1
 php /var/www/firefly/artisan cache:clear > /dev/null 2>&1
 php /var/www/firefly/artisan config:cache > /dev/null 2>&1
 
