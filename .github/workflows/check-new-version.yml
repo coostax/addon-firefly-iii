@@ -27,7 +27,7 @@ jobs:
           sed -i "s/ENV FIREFLY_VERSION=.*/ENV FIREFLY_VERSION=${{ steps.check_version.outputs.new_version }}/" firefly-iii/Dockerfile
 
       - name: Check if Dockerfile has changed
-        uses: tj-actions/verify-changed-files@v17
+        uses: tj-actions/verify-changed-files@v19
         id: verify_changed_files
         with:
           files: |
