@@ -3,7 +3,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:7.4.0
 FROM $BUILD_FROM
 
 # Default ENV
-ENV FIREFLY_VERSION=v6.1.19
+ENV FIREFLY_VERSION=null
 
 # Setup base
 # hadolint ignore=DL3008,DL4006
