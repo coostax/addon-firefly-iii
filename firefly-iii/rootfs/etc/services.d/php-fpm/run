@@ -44,7 +44,7 @@ fi
 bashio::log.info "Running migration commands..."
 php /var/www/firefly/artisan firefly-iii:create-database
 php /var/www/firefly/artisan migrate --seed --no-interaction --force
-php /var/www/firefly/artisan firefly-iii:decrypt-all
+#php /var/www/firefly/artisan firefly-iii:decrypt-all
 
 bashio::log.info "Running upgrade commands..."
 php /var/www/firefly/artisan firefly-iii:transaction-identifiers
@@ -94,4 +94,4 @@ rm -f /var/www/firefly/storage/logs/*.log
 
 bashio::log.info "Starting PHP-FPM..."
 
-exec php-fpm8.3 --nodaemonize
+exec php-fpm8.4 --nodaemonize
