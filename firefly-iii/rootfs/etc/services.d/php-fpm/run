@@ -44,49 +44,20 @@ fi
 bashio::log.info "Running migration commands..."
 php /var/www/firefly/artisan firefly-iii:create-database
 php /var/www/firefly/artisan migrate --seed --no-interaction --force
-php /var/www/firefly/artisan firefly-iii:decrypt-all
 
 bashio::log.info "Running upgrade commands..."
-php /var/www/firefly/artisan firefly-iii:transaction-identifiers
-php /var/www/firefly/artisan firefly-iii:migrate-to-groups
-php /var/www/firefly/artisan firefly-iii:account-currencies
-php /var/www/firefly/artisan firefly-iii:transfer-currencies
-php /var/www/firefly/artisan firefly-iii:other-currencies
-php /var/www/firefly/artisan firefly-iii:migrate-notes
-php /var/www/firefly/artisan firefly-iii:migrate-attachments
-php /var/www/firefly/artisan firefly-iii:bills-to-rules
-php /var/www/firefly/artisan firefly-iii:bl-currency
-php /var/www/firefly/artisan firefly-iii:cc-liabilities
-php /var/www/firefly/artisan firefly-iii:back-to-journals
-php /var/www/firefly/artisan firefly-iii:rename-account-meta
-php /var/www/firefly/artisan firefly-iii:migrate-recurrence-meta
+php /var/www/firefly/artisan firefly-iii:upgrade-database
+php /var/www/firefly/artisan firefly-iii:laravel-passport-keys
 
-bashio::log.info "Running verification commands..."
-php /var/www/firefly/artisan firefly-iii:fix-piggies
-php /var/www/firefly/artisan firefly-iii:create-link-types
-php /var/www/firefly/artisan firefly-iii:create-access-tokens
-php /var/www/firefly/artisan firefly-iii:remove-bills
-php /var/www/firefly/artisan firefly-iii:enable-currencies
-php /var/www/firefly/artisan firefly-iii:fix-transfer-budgets
-php /var/www/firefly/artisan firefly-iii:fix-uneven-amount
-php /var/www/firefly/artisan firefly-iii:delete-zero-amount
-php /var/www/firefly/artisan firefly-iii:delete-orphaned-transactions
-php /var/www/firefly/artisan firefly-iii:delete-empty-journals
-php /var/www/firefly/artisan firefly-iii:delete-empty-groups
-php /var/www/firefly/artisan firefly-iii:fix-account-types
-php /var/www/firefly/artisan firefly-iii:rename-meta-fields
-php /var/www/firefly/artisan firefly-iii:fix-ob-currencies
-php /var/www/firefly/artisan firefly-iii:fix-long-descriptions
-php /var/www/firefly/artisan firefly-iii:fix-recurring-transactions
-
-bashio::log.info "Running report commands..."
-php /var/www/firefly/artisan firefly-iii:report-empty-objects
-php /var/www/firefly/artisan firefly-iii:report-sum
-
-php /var/www/firefly/artisan firefly-iii:restore-oauth-keys
 php /var/www/firefly/artisan firefly-iii:set-latest-version --james-is-cool
 php /var/www/firefly/artisan cache:clear > /dev/null 2>&1
 php /var/www/firefly/artisan config:cache > /dev/null 2>&1
+
+# set docker var.
+export IS_DOCKER=true
+
+php /var/www/firefly/artisan firefly-iii:verify-security-alerts
+php /var/www/firefly/artisan firefly:instructions install
 
 bashio::log.info "Cleanup cache and logs"
 rm -rf /var/www/firefly/storage/framework/cache/data/*
@@ -94,4 +65,4 @@ rm -f /var/www/firefly/storage/logs/*.log
 
 bashio::log.info "Starting PHP-FPM..."
 
-exec php-fpm8.3 --nodaemonize
+exec php-fpm8.4 --nodaemonize
