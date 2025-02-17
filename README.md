@@ -86,7 +86,7 @@ SOFTWARE.
 [firefly-iii]: https://firefly-iii.org/
 [home-assistant]: https://home-assistant.io
 [hassio-firefly]: https://github.com/coostax/addon-firefly-iii
-[i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
+[i386-shield]: https://img.shields.io/badge/i386-no-green.svg
 [issue]: https://github.com/coostax/addon-firefly-iii/issues
 [keepchangelog]: http://keepachangelog.com/en/1.0.0/
 [license-shield]: https://img.shields.io/github/license/coostax/addon-firefly-iii.svg
