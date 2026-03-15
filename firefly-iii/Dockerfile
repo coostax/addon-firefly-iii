@@ -32,7 +32,6 @@ RUN \
         php8.5-ldap \
         php8.5-mbstring \
         php8.5-mysql \
-        php8.5-opcache \
         php8.5-readline \
         php8.5-sqlite3 \
         php8.5-xml \
