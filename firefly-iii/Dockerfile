@@ -3,7 +3,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:7.7.0
 FROM $BUILD_FROM
 
 # Default ENV
-ENV FIREFLY_VERSION=v6.5.2
+ENV FIREFLY_VERSION=v6.5.4
 
 # Setup base
 # hadolint ignore=DL3008,DL4006
@@ -17,27 +17,26 @@ RUN \
         nginx \
         software-properties-common \
         unzip \
-    #Install and config PHP 8.4
+    #Install and config PHP 8.5
     && curl -J -L -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install  -y --no-install-recommends \
-        php8.4-bcmath \
-        php8.4-curl \
-        php8.4-cli \
-        php8.4-common \
-        php8.4-fpm \
-        php8.4-gd \
-        php8.4-intl \
-        php8.4-ldap \
-        php8.4-mbstring \
-        php8.4-mysql \
-        php8.4-opcache \
-        php8.4-readline \
-        php8.4-sqlite3 \
-        php8.4-xml \
-        php8.4-zip \
-        php8.4 \
+        php8.5-bcmath \
+        php8.5-curl \
+        php8.5-cli \
+        php8.5-common \
+        php8.5-fpm \
+        php8.5-gd \
+        php8.5-intl \
+        php8.5-ldap \
+        php8.5-mbstring \
+        php8.5-mysql \
+        php8.5-readline \
+        php8.5-sqlite3 \
+        php8.5-xml \
+        php8.5-zip \
+        php8.5 \
     \
     #Install composer
     && curl -sS https://getcomposer.org/installer | php \
