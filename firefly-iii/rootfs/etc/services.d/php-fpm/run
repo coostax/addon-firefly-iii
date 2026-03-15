@@ -65,4 +65,4 @@ rm -f /var/www/firefly/storage/logs/*.log
 
 bashio::log.info "Starting PHP-FPM..."
 
-exec php-fpm8.4 --nodaemonize
+exec php-fpm8.5 --nodaemonize
