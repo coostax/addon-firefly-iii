@@ -10,6 +10,7 @@ services:
 arch:
   - armv7
   - amd64
+  - aarch64
 hassio_api: true
 map:
   - ssl
