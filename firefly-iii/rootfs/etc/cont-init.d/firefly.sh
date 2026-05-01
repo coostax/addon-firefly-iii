@@ -18,6 +18,10 @@ fi
 
 rm -r /var/www/firefly/storage/upload
 ln -s /data/firefly/upload /var/www/firefly/storage/upload
+# Create oauth key
+php /var/www/firefly/artisan config:clear
+php /var/www/firefly/artisan key:generate
+php /var/www/firefly/artisan config:clear
 chown -R www-data:www-data /var/www/firefly/storage
 chmod -R 755 /var/www/firefly/storage
 chmod 600 /var/www/firefly/storage/oauth-*.key

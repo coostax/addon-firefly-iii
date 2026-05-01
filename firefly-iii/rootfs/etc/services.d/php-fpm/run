@@ -63,11 +63,8 @@ export IS_DOCKER=true
 php /var/www/firefly/artisan firefly-iii:verify-security-alerts
 php /var/www/firefly/artisan firefly:instructions install
 
-bashio::log.info "Generating oauth key..."
+bashio::log.info "Insatll oauth key generator"
 php /var/www/firefly/artisan passport:install
-php /var/www/firefly/artisan config:clear
-php /var/www/firefly/artisan key:generate
-php /var/www/firefly/artisan config:clear
 
 bashio::log.info "Cleanup cache and logs"
 rm -rf /var/www/firefly/storage/framework/cache/data/*
