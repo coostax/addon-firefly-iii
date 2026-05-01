@@ -48,7 +48,10 @@ php /var/www/firefly/artisan migrate --seed --no-interaction --force
 
 bashio::log.info "Running upgrade commands..."
 php /var/www/firefly/artisan firefly-iii:upgrade-database
+php /var/www/firefly/artisan firefly-iii:correct-database
+php /var/www/firefly/artisan firefly-iii:report-integrity
 php /var/www/firefly/artisan firefly-iii:laravel-passport-keys
+php /var/www/firefly/artisan firefly-iii:instructions update
 
 php /var/www/firefly/artisan firefly-iii:set-latest-version --james-is-cool
 php /var/www/firefly/artisan cache:clear > /dev/null 2>&1
@@ -59,6 +62,12 @@ export IS_DOCKER=true
 
 php /var/www/firefly/artisan firefly-iii:verify-security-alerts
 php /var/www/firefly/artisan firefly:instructions install
+
+bashio::log.info "Generating oauth key..."
+php /var/www/firefly/artisan passport:install
+php /var/www/firefly/artisan config:clear
+php /var/www/firefly/artisan key:generate
+php /var/www/firefly/artisan config:clear
 
 bashio::log.info "Cleanup cache and logs"
 rm -rf /var/www/firefly/storage/framework/cache/data/*
