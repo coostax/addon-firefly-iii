@@ -36,6 +36,7 @@ RUN \
         php8.5-sqlite3 \
         php8.5-xml \
         php8.5-zip \
+        php8.5-hash \
         php8.5 \
     \
     #Install composer
