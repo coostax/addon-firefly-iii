@@ -18,23 +18,24 @@ fi
 
 rm -r /var/www/firefly/storage/upload
 ln -s /data/firefly/upload /var/www/firefly/storage/upload
-# Create oauth key
-php /var/www/firefly/artisan config:clear
-php /var/www/firefly/artisan key:generate
-php /var/www/firefly/artisan config:clear
+# Run composer install again
+cd /var/www/firefly || exit
+echo "APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -1)" >> /var/www/firefly/.env
+php composer.phar install
+
 chown -R www-data:www-data /var/www/firefly/storage
 chmod -R 755 /var/www/firefly/storage
 chmod 600 /var/www/firefly/storage/oauth-*.key
 
-#Create API key if needed
-if ! bashio::fs.file_exists "/data/firefly/appkey.txt"; then
-	#Command fails without appkey set, this won't be used again
-	export APP_KEY=SomeRandomStringOf32CharsExactly
+#Create APP key if needed
+if ! bashio::fs.file_exists "/data/firefly/.env"; then
  	bashio::log.info "Generating app key"
  	key=$(php /var/www/firefly/artisan key:generate --show)
- 	echo "${key}" > /data/firefly/appkey.txt
+ 	echo "APP_KEY=${key}" > /data/firefly/.env
  	bashio::log.info "App Key generated: ${key}"
 fi
+bashio::log.info "Setting App Key"
+cp -f /data/firefly/.env /var/www/firefly/.env
 
 if bashio::config.has_value 'remote_mysql_host'; then
   if ! bashio::config.has_value 'remote_mysql_database'; then
@@ -81,8 +82,7 @@ else
 fi
 
 #Create .env file
-bashio::log.info "Creating environment variable file for Firefly-iii"
-rm -f /var/www/firefly/.env
+bashio::log.info "Setting environment variable file for Firefly-iii"
 
 if bashio::config.has_value 'app_url'; then
   echo "APP_URL=""$(bashio::config "app_url")" > /var/www/firefly/.env

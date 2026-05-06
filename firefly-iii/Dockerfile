@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:7.7.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:9.3.0
 # hadolint ignore=DL3006
 FROM $BUILD_FROM
 
@@ -15,7 +15,7 @@ RUN \
         git \
         mariadb-client \
         nginx \
-        software-properties-common \
+        lsb-release \
         unzip \
     #Install and config PHP 8.5
     && curl -J -L -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
@@ -36,9 +36,7 @@ RUN \
         php8.5-sqlite3 \
         php8.5-xml \
         php8.5-zip \
-        php8.5-hash \
         php8.5 \
-    \
     #Install composer
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /tmp/composer && chmod +x /tmp/composer \
@@ -53,6 +51,12 @@ RUN \
         /var/www/firefly --strip-components=1 \
     && printf "vi_VN.UTF-8 UTF-8\nfi_FI.UTF-8 UTF-8\nsv_SE.UTF-8 UTF-8\nel_GR.UTF-8 UTF-8\nhu_HU.UTF-8 UTF-8\nro_RO.UTF-8 UTF-8\nnb_NO.UTF-8 UTF-8\nde_DE.UTF-8 UTF-8\ncs_CZ.UTF-8 UTF-8\nen_US.UTF-8 UTF-8\nes_ES.UTF-8 UTF-8\nfr_FR.UTF-8 UTF-8\nid_ID.UTF-8 UTF-8\nit_IT.UTF-8 UTF-8\nnl_NL.UTF-8 UTF-8\npl_PL.UTF-8 UTF-8\npt_PT.UTF-8 UTF-8\nru_RU.UTF-8 UTF-8\ntr_TR.UTF-8 UTF-8\nzh_TW.UTF-8 UTF-8\nzh_CN.UTF-8 UTF-8\n\n" > /etc/locale.gen \
     && locale-gen \
+    # Setup env file
+    && rm -f /var/www/firefly/.env \
+    && echo "HASH_DRIVER=argon2id" > /var/www/firefly/.env \
+#    && echo "APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -1)" >> /var/www/firefly/.env \
+    # change hash-driver setting
+    && sed -i "s/'driver' => 'bcrypt',/'driver' => 'argon2id',/" /var/www/firefly/config/hashing.php \
     && /tmp/composer install --prefer-dist --no-dev --no-scripts --no-suggest \
     && find /var/www/firefly -type f -name "*.md" -depth -exec rm -f {} \; \
     && mv /tmp/composer /var/www/firefly/composer.phar \
@@ -61,7 +65,7 @@ RUN \
     && chmod g+s /var/www/firefly/storage \
     && apt-get purge -y --auto-remove \
         git \
-        software-properties-common \
+        lsb-release \
         unzip \
     && apt-get clean \
     && rm -f -r \
