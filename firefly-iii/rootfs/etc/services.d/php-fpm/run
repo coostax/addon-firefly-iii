@@ -8,8 +8,9 @@ declare key
 
 key=$(cat /data/firefly/appkey.txt)
 export APP_KEY=${key}
+export APP_ENV=production
+export HASH_DRIVER=argon2id
 export LOG_CHANNEL=stdout
-export APP_ENV=local
 export DB_CONNECTION=mysql
 export DB_DATABASE
 export DB_HOST
@@ -48,7 +49,10 @@ php /var/www/firefly/artisan migrate --seed --no-interaction --force
 
 bashio::log.info "Running upgrade commands..."
 php /var/www/firefly/artisan firefly-iii:upgrade-database
+php /var/www/firefly/artisan firefly-iii:correct-database
+php /var/www/firefly/artisan firefly-iii:report-integrity
 php /var/www/firefly/artisan firefly-iii:laravel-passport-keys
+php /var/www/firefly/artisan firefly-iii:instructions update
 
 php /var/www/firefly/artisan firefly-iii:set-latest-version --james-is-cool
 php /var/www/firefly/artisan cache:clear > /dev/null 2>&1
@@ -63,6 +67,8 @@ php /var/www/firefly/artisan firefly:instructions install
 bashio::log.info "Cleanup cache and logs"
 rm -rf /var/www/firefly/storage/framework/cache/data/*
 rm -f /var/www/firefly/storage/logs/*.log
+bashio::log.info "Enforce storage permissions"
+chown -R www-data:www-data /var/www/firefly/storage
 
 bashio::log.info "Starting PHP-FPM..."
 

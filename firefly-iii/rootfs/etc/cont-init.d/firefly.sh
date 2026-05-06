@@ -18,16 +18,27 @@ fi
 
 rm -r /var/www/firefly/storage/upload
 ln -s /data/firefly/upload /var/www/firefly/storage/upload
+# Run composer install again
+cd /var/www/firefly || exit
+if bashio::fs.file_exists "/data/firefly/appkey.txt"; then
+  echo "APP_KEY=$(cat /data/firefly/appkey.txt)" >> /var/www/firefly/.env
+else
+  echo "APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -1)" >> /var/www/firefly/.env
+fi
+php composer.phar install --prefer-dist --no-dev --no-suggest
+
 chown -R www-data:www-data /var/www/firefly/storage
 chmod -R 755 /var/www/firefly/storage
+#chmod 600 /var/www/firefly/storage/oauth-*.key
 
-#Create API key if needed
+#Create APP key if needed
 if ! bashio::fs.file_exists "/data/firefly/appkey.txt"; then
-	#Command fails without appkey set, this won't be used again
-	export APP_KEY=SomeRandomStringOf32CharsExactly
  	bashio::log.info "Generating app key"
  	key=$(php /var/www/firefly/artisan key:generate --show)
  	echo "${key}" > /data/firefly/appkey.txt
+  bashio::log.info "Setting App Key"
+  echo "HASH_DRIVER=argon2id" > /var/www/firefly/.env
+  echo "APP_KEY=${key}" >> /var/www/firefly/.env
  	bashio::log.info "App Key generated: ${key}"
 fi
 
@@ -68,6 +79,7 @@ else
   bashio::log.warning "Please ensure this is included in your backups"
   bashio::log.warning "Uninstalling the MariaDB addon will remove any data"
 
+  bashio::log.info "database host is ${host}"
   bashio::log.info "Creating database for Firefly-iii if required"
   mysql \
     -u "${username}" -p"${password}" \
@@ -76,8 +88,7 @@ else
 fi
 
 #Create .env file
-bashio::log.info "Creating environment variable file for Firefly-iii"
-rm -f /var/www/firefly/.env
+bashio::log.info "Setting environment variable file for Firefly-iii"
 
 if bashio::config.has_value 'app_url'; then
   echo "APP_URL=""$(bashio::config "app_url")" > /var/www/firefly/.env
