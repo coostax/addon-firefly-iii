@@ -20,8 +20,12 @@ rm -r /var/www/firefly/storage/upload
 ln -s /data/firefly/upload /var/www/firefly/storage/upload
 # Run composer install again
 cd /var/www/firefly || exit
-echo "APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -1)" >> /var/www/firefly/.env
-php composer.phar install
+if bashio::fs.file_exists "/data/firefly/appkey.txt"; then
+  echo "APP_KEY=$(cat /data/firefly/appkey.txt)" >> /var/www/firefly/.env
+else
+  echo "APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -1)" >> /var/www/firefly/.env
+fi
+php composer.phar install --prefer-dist --no-dev --no-suggest
 
 chown -R www-data:www-data /var/www/firefly/storage
 chmod -R 755 /var/www/firefly/storage
@@ -32,10 +36,11 @@ if ! bashio::fs.file_exists "/data/firefly/appkey.txt"; then
  	bashio::log.info "Generating app key"
  	key=$(php /var/www/firefly/artisan key:generate --show)
  	echo "${key}" > /data/firefly/appkey.txt
+  bashio::log.info "Setting App Key"
+  echo "HASH_DRIVER=argon2id" > /var/www/firefly/.env
+  echo "APP_KEY=${key}" >> /var/www/firefly/.env
  	bashio::log.info "App Key generated: ${key}"
 fi
-bashio::log.info "Setting App Key"
-echo "APP_KEY=$(cat /data/firefly/appkey.txt)" > /var/www/firefly/.env
 
 if bashio::config.has_value 'remote_mysql_host'; then
   if ! bashio::config.has_value 'remote_mysql_database'; then
