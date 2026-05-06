@@ -67,6 +67,8 @@ php /var/www/firefly/artisan firefly:instructions install
 bashio::log.info "Cleanup cache and logs"
 rm -rf /var/www/firefly/storage/framework/cache/data/*
 rm -f /var/www/firefly/storage/logs/*.log
+bashio::log.info "Enforce storage permissions"
+chown -R www-data:www-data /var/www/firefly/storage
 
 bashio::log.info "Starting PHP-FPM..."
 
