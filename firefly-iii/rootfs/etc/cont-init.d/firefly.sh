@@ -25,17 +25,17 @@ php composer.phar install
 
 chown -R www-data:www-data /var/www/firefly/storage
 chmod -R 755 /var/www/firefly/storage
-chmod 600 /var/www/firefly/storage/oauth-*.key
+#chmod 600 /var/www/firefly/storage/oauth-*.key
 
 #Create APP key if needed
-if ! bashio::fs.file_exists "/data/firefly/.env"; then
+if ! bashio::fs.file_exists "/data/firefly/appkey.txt"; then
  	bashio::log.info "Generating app key"
  	key=$(php /var/www/firefly/artisan key:generate --show)
- 	echo "APP_KEY=${key}" > /data/firefly/.env
+ 	echo "${key}" > /data/firefly/appkey.txt
  	bashio::log.info "App Key generated: ${key}"
 fi
 bashio::log.info "Setting App Key"
-cp -f /data/firefly/.env /var/www/firefly/.env
+echo "APP_KEY=$(cat /data/firefly/appkey.txt)" > /var/www/firefly/.env
 
 if bashio::config.has_value 'remote_mysql_host'; then
   if ! bashio::config.has_value 'remote_mysql_database'; then

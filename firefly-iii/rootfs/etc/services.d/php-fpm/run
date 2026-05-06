@@ -8,6 +8,7 @@ declare key
 
 key=$(cat /data/firefly/appkey.txt)
 export APP_KEY=${key}
+export HASH_DRIVER=argon2id
 export LOG_CHANNEL=stdout
 export APP_ENV=local
 export DB_CONNECTION=mysql
