@@ -79,6 +79,7 @@ else
   bashio::log.warning "Please ensure this is included in your backups"
   bashio::log.warning "Uninstalling the MariaDB addon will remove any data"
 
+  bashio::log.info "database host is ${host}"
   bashio::log.info "Creating database for Firefly-iii if required"
   mysql \
     -u "${username}" -p"${password}" \
