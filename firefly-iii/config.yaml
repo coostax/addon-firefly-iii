@@ -9,7 +9,6 @@ services:
   - mysql:want
 arch:
   - amd64
-  - armv7
   - aarch64
 hassio_api: true
 map:
