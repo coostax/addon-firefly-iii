@@ -3,8 +3,9 @@
 To build the image locally run the following:
 
 ´´´
-docker build \
---build-arg BUILD_FROM="ghcr.io/hassio-addons/debian-base/amd64:7.7.0" \
+podman build --userns=host \
+--build-arg BUILD_FROM="ghcr.io/hassio-addons/debian-base/amd64:9.5.0" \
+--build-arg BUILD_ARCH="amd64" \
 -t local/addon-firefly-iii .
 ´´´
 
